@@ -1,7 +1,7 @@
 {
     "name": "codesleeve/stapler-l4",
-    "description": "Easy file attachment management using Eloquent in Laravel 4",
-    "keywords": ["laravel", "file", "upload", "S3", "AWS", "paperclip", "lpm"],
+    "description": "Easy file upload management for the Laravel Framework.",
+    "keywords": ["laravel", "file", "upload", "S3", "AWS", "paperclip"],
     "license": "MIT",
     "authors": [
         {
