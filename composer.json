@@ -1,0 +1,26 @@
+{
+    "name": "codesleeve/stapler-l4",
+    "description": "Easy file attachment management using Eloquent in Laravel 4",
+    "keywords": ["laravel", "file", "upload", "S3", "AWS", "paperclip", "lpm"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Travis Bennett",
+            "email": "tandrewbennett@hotmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "codesleeve/stapler": "dev-development",
+        "laravel/framework": "4.1.*"
+    },
+    "autoload": {
+        "classmap": [
+            "src/migrations"
+        ],
+        "psr-0": {
+            "Codesleeve\\LaravelStapler\\": "src/"
+        }
+    },
+    "minimum-stability": "stable"
+}
