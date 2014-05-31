@@ -2,9 +2,9 @@
 
 use Config;
 use Illuminate\Support\ServiceProvider;
+use Codesleeve\LaravelStapler\Services\ImageRefreshService;
 use Codesleeve\Stapler\Stapler;
 use Codesleeve\Stapler\Config\IlluminateConfig;
-use Codesleeve\Stapler\Services\ImageRefreshService;
 
 class LaravelStaplerServiceProvider extends ServiceProvider {
 

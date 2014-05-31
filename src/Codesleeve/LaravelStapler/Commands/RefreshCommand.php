@@ -49,8 +49,11 @@ class RefreshCommand extends Command
 	 */
 	public function fire()
 	{
+		$class = $this->argument('class');
+		$attachments = $this->option('attachments') ?: [];
+
 		$this->info('Refreshing uploaded images...');
-		$this->imageRefreshService->refresh($this->argument('class'), $this->option('attachments'));
+		$this->imageRefreshService->refresh($class, $attachments);
 		$this->info('Done!');
 	}
 
@@ -61,9 +64,9 @@ class RefreshCommand extends Command
 	 */
 	protected function getArguments()
 	{
-		return array(
-			array('class', InputArgument::REQUIRED, 'The name of a class (model) to refresh images on'),
-		);
+		return [
+			['class', InputArgument::REQUIRED, 'The name of a class (model) to refresh images on'],
+		];
 	}
 
 	/**
@@ -73,8 +76,8 @@ class RefreshCommand extends Command
 	 */
 	protected function getOptions()
 	{
-		return array(
-			array('attachments', null, InputOption::VALUE_OPTIONAL, 'A list of specific attachments to refresh images on.'),
-		);
+		return [
+			['attachments', null, InputOption::VALUE_OPTIONAL, 'A list of specific attachments to refresh images on.'],
+		];
 	}
 }
