@@ -3,7 +3,7 @@
 use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
-use Codesleeve\Stapler\Services\ImageRefreshService;
+use Codesleeve\LaravelStapler\Services\ImageRefreshService;
 
 class RefreshCommand extends Command
 {
