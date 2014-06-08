@@ -1,7 +1,7 @@
 {
     "name": "codesleeve/laravel-stapler",
     "description": "Easy file upload management for the Laravel Framework.",
-    "keywords": ["laravel", "file", "upload", "S3", "AWS", "paperclip"],
+    "keywords": ["laravel", "file", "upload", "S3", "AWS", "stapler", "paperclip"],
     "license": "MIT",
     "authors": [
         {
@@ -12,7 +12,7 @@
     "require": {
         "php": ">=5.4.0",
         "codesleeve/stapler": "dev-development",
-        "laravel/framework": "4.1.*"
+        "laravel/framework": "~4"
     },
     "autoload": {
         "classmap": [
