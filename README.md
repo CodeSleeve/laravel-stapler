@@ -41,7 +41,7 @@ Once this operation completes, the final step is to add the service provider. Op
 ## migrating-from-Stapler-v1.0.0-Beta4
 If you've been using Stapler (prior to v1.0.0-Beta4) in your Laravel app, you now need to be using this package instead.  Uninstall Stapler (remove it from your composer.json, remove the service provider, etc) and install this package following the instructions above.  Once installed, the following changes may need need to be made in your application:
 
-* In your models that are using Stapler, change `use Codesleeve\Stapler\Stapler` to `use Codesleeve\Stapler\Traits\Eloquent`.
+* In your models that are using Stapler, change `use Codesleeve\Stapler\Stapler` to `use Codesleeve\Stapler\ORM\EloquentTrait`.  Your models will also need to implement `Codesleeve\Stapler\ORM\StaplerableInterface`.
 
 * If you published stapler's config, you'll need to rename config folder from `app/config/packages/codesleeve/stapler` to `app/config/packages/codesleeve/laravel-stapler`.
 
@@ -60,8 +60,11 @@ grant your application write permissions to it.  For this, we're assuming the ex
 In your model:
 
 ```php
-class User extends Eloquent {
-	use Codesleeve\Stapler\Stapler;
+use Codesleeve\Stapler\ORM\StaplerableInterface;
+use Codesleeve\Stapler\ORM\EloquentTrait;
+
+class User extends Eloquent implements StaplerableInterface {
+	use EloquentTrait;
 	
 	// Add the 'avatar' attachment to the fillable array so that it's mass-assignable on this model.
 	protected $fillable = ['avatar', 'first_name', 'last_name'];
