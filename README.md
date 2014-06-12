@@ -153,7 +153,6 @@ Reprocess a list of attachments on the ProfilePicture model:
 `php artisan stapler:refresh TestPhoto --attachments="foo, bar, baz, etc"`
 
 ## Contributing
-This package is always open to contributions, however there are a couple of guidelines you should follow:
+This package is always open to contributions:
 
-1. Master will always contain the most recent, stable release.
-2. Development will always have the newest work (bug fixes, new features, etc) and will always be ahead of master.  Every new tagged release will come from the work done on development (development will always be merged into master before a release is tagged).  If you want to contribute, you must submit your pull request to development; it will always contain the most recent development work I'm doing.  **I WILL NOT BE MERGING PULL REQUESTS INTO MASTER**.
+* Master will always contain the newest work (bug fixes, new features, etc), however it may not always be stable; use at your own risk.  Every new tagged release will come from the work done on master, once things have stablized, etc.
