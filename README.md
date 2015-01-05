@@ -141,7 +141,7 @@ In the quickstart example above, calling
 
 
 ### refresh
-The `refresh` command can be used to reprocess uploaded images on a model's attachments.  It workds by calling the reprocess() method on each of the model's attachments (or on specific attachments only).  This is very useful for adding new styles to an existing attachment when a file has already been uploaded for that attachment.
+The `refresh` command can be used to reprocess uploaded images on a model's attachments.  It works by calling the reprocess() method on each of the model's attachments (or on specific attachments only).  This is very useful for adding new styles to an existing attachment when a file has already been uploaded for that attachment.
 
 Reprocess all attachments for the ProfilePicture model:
 `php artisan stapler:refresh ProfilePicture`
