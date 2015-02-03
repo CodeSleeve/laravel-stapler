@@ -72,8 +72,8 @@ class User extends Eloquent implements StaplerableInterface {
 	public function __construct(array $attributes = array()) {
 		$this->hasAttachedFile('avatar', [
 			'styles' => [
-			'medium' => '300x300',
-			'thumb' => '100x100'
+				'medium' => '300x300',
+				'thumb' => '100x100'
 			]
 		]);
 
