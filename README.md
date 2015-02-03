@@ -38,6 +38,12 @@ Once this operation completes, the final step is to add the service provider. Op
     'Codesleeve\LaravelStapler\LaravelStaplerServiceProvider'
 ```
 
+Configuration files can be published and edited by running:
+
+```
+php artisan config:publish codesleeve/laravel-stapler
+```
+
 ## migrating-from-Stapler-v1.0.0-Beta4
 If you've been using Stapler (prior to v1.0.0-Beta4) in your Laravel app, you now need to be using this package instead.  Uninstall Stapler (remove it from your composer.json, remove the service provider, etc) and install this package following the instructions above.  Once installed, the following changes may need need to be made in your application:
 
