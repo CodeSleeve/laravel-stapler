@@ -3,13 +3,29 @@
 use Codesleeve\LaravelStapler\Exceptions\InvalidClassException;
 use Illuminate\Database\Eloquent\Collection;
 use App;
+use Symfony\Component\Console\Helper\ProgressBar;
+use Symfony\Component\Console\Output\NullOutput;
+use Symfony\Component\Console\Output\OutputInterface;
 
 class ImageRefreshService
 {
 	/**
+	 * @type OutputInterface
+	 */
+	protected $output;
+
+	/**
+	 * @param OutputInterface $output
+	 */
+	public function setOutput(OutputInterface $output)
+	{
+		$this->output = $output;
+	}
+
+	/**
 	 * Attempt to refresh the defined attachments on a particular model.
 	 *
-     * @throws InvalidClassException
+	 * @throws InvalidClassException
 	 * @param  string $class
 	 * @param  array $attachments
 	 * @return void
@@ -42,8 +58,13 @@ class ImageRefreshService
 	 */
 	protected  function processSomeAttachments(Collection $models, array $attachments)
 	{
+		$progress = $this->getProgressBar($models);
+		$progress->start();
+
 		foreach ($models as $model)
 		{
+			$progress->advance();
+
 			foreach ($model->getAttachedFiles() as $attachedFile)
 			{
 				if (in_array($attachedFile->name, $attachments)) {
@@ -51,6 +72,8 @@ class ImageRefreshService
 				}
 			}
 		}
+
+		$progress->finish();
 	}
 
 	/**
@@ -61,12 +84,34 @@ class ImageRefreshService
 	 */
 	protected function processAllAttachments(Collection $models)
 	{
+		$progress = $this->getProgressBar($models);
+		$progress->start();
+
 		foreach ($models as $model)
 		{
+			$progress->advance();
+
 			foreach ($model->getAttachedFiles() as $attachedFile)
 			{
 				$attachedFile->reprocess();
 			}
 		}
+
+		$progress->finish();
+	}
+
+	/**
+	 * Get an instance of the ProgressBar helper
+	 *
+	 * @param Collection $models
+	 *
+	 * @return ProgressBar
+	 */
+	protected function getProgressBar(Collection $models)
+	{
+		$output   = $this->output ?: new NullOutput();
+		$progress = new ProgressBar($output, $models->count());
+
+		return $progress;
 	}
 }
