@@ -38,16 +38,26 @@ class FastenCommand extends Command
     protected $file;
 
     /**
-     * Create a new command instance.
-     *
-     * @return void
+     * The path to the application's migrations folder.
+     * 
+     * @var File
      */
-    public function __construct(View $view, File $file)
+    protected $migrationsFolderPath;
+
+    /**
+     * Create a new command instance.
+     * 
+     * @param View   $view
+     * @param File   $file
+     * @param string $migrationsFolderPath
+     */
+    public function __construct(View $view, File $file, $migrationsFolderPath)
     {
         parent::__construct();
 
         $this->view = $view;
         $this->file = $file;
+        $this->migrationsFolderPath = $migrationsFolderPath;
     }
 
     /**
@@ -92,11 +102,8 @@ class FastenCommand extends Command
     {
         $data = ['table' => $this->argument('table'), 'attachment' => $this->argument('attachment')];
         $prefix = date('Y_m_d_His');
-        $path = app_path() . '/database/migrations';
 
-        if (!is_dir($path)) mkdir($path);
-
-        $fileName  = $path . '/' . $prefix . '_add_' . $data['attachment'] . '_fields_to_' . $data['table'] . '_table.php';
+        $fileName  = $this->migrationsFolderPath . '/' . $prefix . '_add_' . $data['attachment'] . '_fields_to_' . $data['table'] . '_table.php';
         $data['className'] = 'Add' . ucfirst(Str::camel($data['attachment'])) . 'FieldsTo' . ucfirst(Str::camel($data['table'])) . 'Table';
 
         // Save the new migration to disk using the stapler migration view.
@@ -104,8 +111,6 @@ class FastenCommand extends Command
         $this->file->put($fileName, $migration);
 
         // Dump the autoloader and print a created migration message to the console.
-        $this->call('dump-autoload');
         $this->info("Created migration: $fileName");
     }
-
 }

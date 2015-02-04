@@ -1,11 +1,11 @@
-<?php namespace Codesleeve\LaravelStapler;
+<?php namespace Codesleeve\LaravelStapler\Providers;
 
-use Config;
-use Illuminate\Support\ServiceProvider;
-use Codesleeve\LaravelStapler\Services\ImageRefreshService;
+use Codesleeve\LaravelStapler\IlluminateConfig;
 use Codesleeve\Stapler\Stapler;
+use Codesleeve\LaravelStapler\Commands\FastenCommand;
+use Config;
 
-class LaravelStaplerServiceProvider extends ServiceProvider 
+class L4ServiceProvider extends ServiceProvider 
 {
     /**
      * Indicates if loading of the provider is deferred.
@@ -21,29 +21,8 @@ class LaravelStaplerServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->package('codesleeve/laravel-stapler', null, __DIR__);
+        $this->package('codesleeve/laravel-stapler', null, dirname(__DIR__ ));
         $this->bootstrapStapler();
-    }
-
-    /**
-     * Register the service provider.
-     *
-     * @return void
-     */
-    public function register()
-    {
-        // commands
-        $this->registerStaplerFastenCommand();
-        $this->registerStaplerRefreshCommand();
-
-        // services
-        $this->registerImageRefreshService();
-
-        // msc
-        $this->registerMigrationFolderPath();
-
-        $this->commands('stapler.fasten');
-        $this->commands('stapler.refresh');
     }
 
     /**
@@ -93,33 +72,6 @@ class LaravelStaplerServiceProvider extends ServiceProvider
             $migrationsFolderPath = app_path() . '/database/migrations';
 
             return new FastenCommand($app['view'], $app['files'], $migrationsFolderPath);
-        });
-    }
-
-    /**
-     * Register the stapler refresh command with the container.
-     *
-     * @return void
-     */
-    protected function registerStaplerRefreshCommand()
-    {
-        $this->app->bind('stapler.refresh', function($app)
-        {
-            $refreshService = $app['ImageRefreshService'];
-
-            return new Commands\RefreshCommand($refreshService);
-        });
-    }
-
-    /**
-     * Register the image refresh service with the container.
-     * 
-     * @return void 
-     */
-    protected function registerImageRefreshService()
-    {
-        $this->app->singleton('ImageRefreshService', function($app, $params) {
-            return new ImageRefreshService($app);
         });
     }
 
