@@ -21,19 +21,21 @@ class L5ServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $packageRoot = dirname(__DIR__);
+
         // config
         $this->publishes([
-            __DIR__.'/config/filesystem.php' => config_path('laravel-stapler/filesystem.php'),
-            __DIR__.'/config/s3.php' => config_path('laravel-stapler/s3.php'),
-            __DIR__.'/config/stapler.php' => config_path('laravel-stapler/stapler.php')
+            $packageRoot . '/config/filesystem.php' => config_path('laravel-stapler/filesystem.php'),
+            $packageRoot . '/config/s3.php' => config_path('laravel-stapler/s3.php'),
+            $packageRoot . '/config/stapler.php' => config_path('laravel-stapler/stapler.php')
         ]);
 
-        $this->mergeConfigFrom(__DIR__.'/config/filesystem.php', 'laravel-stapler/filesystem');
-        $this->mergeConfigFrom(__DIR__.'/config/s3.php', 'laravel-stapler/s3');
-        $this->mergeConfigFrom(__DIR__.'/config/stapler.php', 'laravel-stapler/stapler');
+        $this->mergeConfigFrom($packageRoot . '/config/filesystem.php', 'laravel-stapler/filesystem');
+        $this->mergeConfigFrom($packageRoot . '/config/s3.php', 'laravel-stapler/s3');
+        $this->mergeConfigFrom($packageRoot . '/config/stapler.php', 'laravel-stapler/stapler');
 
         // views
-        $this->loadViewsFrom(__DIR__.'/views', 'laravel-stapler');
+        $this->loadViewsFrom($packageRoot . '/views', 'laravel-stapler');
 
         $this->bootstrapStapler();
     }
