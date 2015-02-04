@@ -18,7 +18,7 @@ Laravel-Stapler was created by [Travis Bennett](https://twitter.com/tandrewbenne
 * [Contributing](#contributing)
 
 ## Requirements
-This package currently requires php >= 5.4 as well as Laravel >= 4.
+This package currently requires php >= 5.4 as well as Laravel >= 4.  If you're going to be performing image processing as part of your file upload, you'll also need GD, Gmagick, or Imagick (your preference) installed as part of your php environment.
 
 ## Installation
 Laravel-Stapler is distributed as a composer package, which is how it should be used in your app.
