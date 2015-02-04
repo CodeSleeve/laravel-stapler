@@ -2,7 +2,7 @@
 
 use Codesleeve\LaravelStapler\Exceptions\InvalidClassException;
 use Illuminate\Database\Eloquent\Collection;
-use App;
+use Illuminate\Foundation\Application;
 use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Output\NullOutput;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -10,9 +10,25 @@ use Symfony\Component\Console\Output\OutputInterface;
 class ImageRefreshService
 {
 	/**
-	 * @type OutputInterface
+	 * The laravel application instance.
+	 * 
+	 * @var Application
+	 */
+	protected $app;
+
+	/**
+	 * A Symfony console output instance.
+	 * 
+	 * @var OutputInterface
 	 */
 	protected $output;
+
+	/**
+	 * @param Application $app
+	 */
+	public function __construct(Application $app) {
+		$this->app = $app;
+	}
 
 	/**
 	 * @param OutputInterface $output
@@ -36,7 +52,7 @@ class ImageRefreshService
 			throw new InvalidClassException("Invalid class: the $class class is not currently using Stapler.", 1);
 		}
 
-		$models = App::make($class)->all();
+		$models = $this->app->make($class)->all();
 
 		if ($attachments)
 		{

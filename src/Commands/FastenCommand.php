@@ -1,9 +1,11 @@
 <?php namespace Codesleeve\LaravelStapler\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Str;
+use Illuminate\View\Factory as View;
+use Illuminate\Filesystem\Filesystem as File;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
-use DB, View, File, Str;
 
 class FastenCommand extends Command
 {
@@ -22,13 +24,30 @@ class FastenCommand extends Command
 	protected $description = 'Generate a migration for adding stapler file fields to a database table';
 
 	/**
+	 * An instance of Laravel's view factory.
+	 * 
+	 * @var View
+	 */
+	protected $view;
+
+	/**
+	 * An instance of Laravel's filesystem.
+	 * 
+	 * @var File
+	 */
+	protected $file;
+
+	/**
 	 * Create a new command instance.
 	 *
 	 * @return void
 	 */
-	public function __construct()
+	public function __construct(View $view, File $file)
 	{
 		parent::__construct();
+
+		$this->view = $view;
+		$this->file = $file;
 	}
 
 	/**
@@ -48,10 +67,10 @@ class FastenCommand extends Command
 	 */
 	protected function getArguments()
 	{
-		return array(
-			array('table', InputArgument::REQUIRED, 'The name of the database table the file fields will be added to.'),
-			array('attachment', InputArgument::REQUIRED, 'The name of the corresponding stapler attachment.'),
-		);
+		return [
+			['table', InputArgument::REQUIRED, 'The name of the database table the file fields will be added to.'],
+			['attachment', InputArgument::REQUIRED, 'The name of the corresponding stapler attachment.'],
+		];
 	}
 
 	/**
@@ -81,8 +100,8 @@ class FastenCommand extends Command
 		$data['className'] = 'Add' . ucfirst(Str::camel($data['attachment'])) . 'FieldsTo' . ucfirst(Str::camel($data['table'])) . 'Table';
 
 		// Save the new migration to disk using the stapler migration view.
-		$migration = View::make('laravel-stapler::migration', $data)->render();
-		File::put($fileName, $migration);
+		$migration = $this->view->make('laravel-stapler::migration', $data)->render();
+		$this->file->put($fileName, $migration);
 
 		// Dump the autoloader and print a created migration message to the console.
 		$this->call('dump-autoload');

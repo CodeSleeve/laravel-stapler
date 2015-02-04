@@ -88,7 +88,7 @@ class LaravelStaplerServiceProvider extends ServiceProvider {
 	{
 		$this->app->bind('stapler.fasten', function($app)
 		{
-			return new Commands\FastenCommand;
+			return new Commands\FastenCommand($app['view'], $app['files']);
 		});
 	}
 
@@ -115,7 +115,7 @@ class LaravelStaplerServiceProvider extends ServiceProvider {
     protected function registerImageRefreshService()
     {
         $this->app->singleton('ImageRefreshService', function($app, $params) {
-            return new ImageRefreshService();
+            return new ImageRefreshService($app);
         });
     }
 
