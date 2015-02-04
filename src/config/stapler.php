@@ -70,7 +70,7 @@ return [
 	| The default style returned from the Stapler file location helper methods.
 	| An unaltered version of uploaded file is always stored within the 'original'
 	| style, however the default_style can be set to point to any of the defined
-	| syles within the styles array.
+	| styles within the styles array.
 	|
 	*/
 

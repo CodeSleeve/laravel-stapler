@@ -49,6 +49,8 @@ class RefreshCommand extends Command
 	 */
 	public function fire()
 	{
+		$this->imageRefreshService->setOutput($this->output);
+
 		$class = $this->argument('class');
 		$attachments = $this->option('attachments') ?: [];
 
