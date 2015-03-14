@@ -19,25 +19,25 @@ class IlluminateConfig implements ConfigurableInterface
      */
     protected $packageName;
 
-	/**
-	 * The separator between package name and item.
-	 *
-	 * @var string
-	 */
-	protected $separator;
+    /**
+     * The separator between package name and item.
+     *
+     * @var string
+     */
+    protected $separator;
 
     /**
      * Constructor method.
      *
      * @param Repository $config
      * @param string $packageName
-	 * @param string $separator
+     * @param string $separator
      */
     function __construct(Repository $config, $packageName = null, $separator = '::')
     {
         $this->config = $config;
         $this->packageName = $packageName;
-		$this->separator = $separator;
+        $this->separator = $separator;
     }
 
     /**
@@ -77,6 +77,6 @@ class IlluminateConfig implements ConfigurableInterface
      */
     protected function getItemPath($item)
     {
-		return $this->packageName . $this->separator . $item;
+        return $this->packageName . $this->separator . $item;
     }
 }
