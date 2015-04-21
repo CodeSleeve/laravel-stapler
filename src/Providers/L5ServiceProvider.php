@@ -30,9 +30,9 @@ class L5ServiceProvider extends ServiceProvider
             $packageRoot . '/config/stapler.php' => config_path('laravel-stapler/stapler.php')
         ]);
 
-        $this->mergeConfigFrom($packageRoot . '/config/filesystem.php', 'filesystem');
-        $this->mergeConfigFrom($packageRoot . '/config/s3.php', 's3');
-        $this->mergeConfigFrom($packageRoot . '/config/stapler.php', 'stapler');
+        $this->mergeConfigFrom($packageRoot . '/config/filesystem.php', 'laravel-stapler.filesystem');
+        $this->mergeConfigFrom($packageRoot . '/config/s3.php', 'laravel-stapler.s3');
+        $this->mergeConfigFrom($packageRoot . '/config/stapler.php', 'laravel-stapler.stapler');
 
         // views
         $this->loadViewsFrom($packageRoot . '/views', 'laravel-stapler');
@@ -53,7 +53,7 @@ class L5ServiceProvider extends ServiceProvider
     {
         Stapler::boot();
 
-        $config = new IlluminateConfig(Config::getFacadeRoot());
+        $config = new IlluminateConfig(Config::getFacadeRoot(), 'laravel-stapler', '.');
         Stapler::setConfigInstance($config);
 
         if (!$config->get('stapler.public_path')) {
