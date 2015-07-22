@@ -1,5 +1,6 @@
 <?php namespace Codesleeve\LaravelStapler;
 
+use Codesleeve\LaravelStapler\Commands\FastenCommand;
 use Config;
 use Illuminate\Support\ServiceProvider;
 use Codesleeve\LaravelStapler\Services\ImageRefreshService;
