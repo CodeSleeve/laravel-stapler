@@ -49,7 +49,7 @@ class ImageRefreshService
      * @param string $class
      * @param array  $attachments
      */
-    public function refresh($class, array $attachments)
+    public function refresh($class, $attachments)
     {
         if (!method_exists($class, 'hasAttachedFile')) {
             throw new InvalidClassException("Invalid class: the $class class is not currently using Stapler.", 1);
