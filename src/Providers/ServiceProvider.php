@@ -1,4 +1,6 @@
-<?php namespace Codesleeve\LaravelStapler\Providers;
+<?php
+
+namespace Codesleeve\LaravelStapler\Providers;
 
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 use Codesleeve\LaravelStapler\Commands\RefreshCommand;
@@ -12,22 +14,16 @@ abstract class ServiceProvider extends BaseServiceProvider
      * - Set the config driver.
      * - Set public_path config using laravel's public_path() method (if necessary).
      * - Set base_path config using laravel's base_path() method (if necessary).
-     * 
-     * @return void
      */
     abstract protected function bootstrapStapler();
 
     /**
      * Register the stapler fasten command with the container.
-     *
-     * @return void
      */
     abstract protected function registerStaplerFastenCommand();
 
     /**
      * Register the service provider.
-     *
-     * @return void
      */
     public function register()
     {
@@ -44,13 +40,10 @@ abstract class ServiceProvider extends BaseServiceProvider
 
     /**
      * Register the stapler refresh command with the container.
-     *
-     * @return void
      */
     protected function registerStaplerRefreshCommand()
     {
-        $this->app->bind('stapler.refresh', function($app)
-        {
+        $this->app->bind('stapler.refresh', function ($app) {
             $refreshService = $app['ImageRefreshService'];
 
             return new RefreshCommand($refreshService);
@@ -59,12 +52,10 @@ abstract class ServiceProvider extends BaseServiceProvider
 
     /**
      * Register the image refresh service with the container.
-     * 
-     * @return void 
      */
     protected function registerImageRefreshService()
     {
-        $this->app->singleton('ImageRefreshService', function($app, $params) {
+        $this->app->singleton('ImageRefreshService', function ($app, $params) {
             return new ImageRefreshService($app);
         });
     }

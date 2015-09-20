@@ -1,11 +1,13 @@
-<?php namespace Codesleeve\LaravelStapler\Providers;
+<?php
+
+namespace Codesleeve\LaravelStapler\Providers;
 
 use Codesleeve\LaravelStapler\IlluminateConfig;
 use Codesleeve\Stapler\Stapler;
 use Codesleeve\LaravelStapler\Commands\FastenCommand;
 use Config;
 
-class L4ServiceProvider extends ServiceProvider 
+class L4ServiceProvider extends ServiceProvider
 {
     /**
      * Indicates if loading of the provider is deferred.
@@ -16,12 +18,10 @@ class L4ServiceProvider extends ServiceProvider
 
     /**
      * Bootstrap the application events.
-     *
-     * @return void
      */
     public function boot()
     {
-        $this->package('codesleeve/laravel-stapler', null, dirname(__DIR__ ));
+        $this->package('codesleeve/laravel-stapler', null, dirname(__DIR__));
         $this->bootstrapStapler();
     }
 
@@ -41,8 +41,6 @@ class L4ServiceProvider extends ServiceProvider
      * - Set the config driver.
      * - Set public_path config using laravel's public_path() method (if necessary).
      * - Set base_path config using laravel's base_path() method (if necessary).
-     * 
-     * @return void
      */
     protected function bootstrapStapler()
     {
@@ -62,14 +60,11 @@ class L4ServiceProvider extends ServiceProvider
 
     /**
      * Register the stapler fasten command with the container.
-     *
-     * @return void
      */
     protected function registerStaplerFastenCommand()
     {
-        $this->app->bind('stapler.fasten', function($app)
-        {
-            $migrationsFolderPath = app_path() . '/database/migrations';
+        $this->app->bind('stapler.fasten', function ($app) {
+            $migrationsFolderPath = app_path().'/database/migrations';
 
             return new FastenCommand($app['view'], $app['files'], $migrationsFolderPath);
         });
@@ -77,11 +72,9 @@ class L4ServiceProvider extends ServiceProvider
 
     /**
      * Register the the migrations folder path with the container.
-     * 
-     * @return void
      */
     protected function registerMigrationFolderPath()
     {
-        $this->app->bind('migration_folder_path', app_path() . '/database/migrations');
+        $this->app->bind('migration_folder_path', app_path().'/database/migrations');
     }
 }

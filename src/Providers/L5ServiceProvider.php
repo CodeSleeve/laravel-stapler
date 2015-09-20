@@ -1,11 +1,13 @@
-<?php namespace Codesleeve\LaravelStapler\Providers;
+<?php
+
+namespace Codesleeve\LaravelStapler\Providers;
 
 use Codesleeve\LaravelStapler\IlluminateConfig;
 use Codesleeve\Stapler\Stapler;
 use Codesleeve\LaravelStapler\Commands\FastenCommand;
 use Config;
 
-class L5ServiceProvider extends ServiceProvider 
+class L5ServiceProvider extends ServiceProvider
 {
     /**
      * Indicates if loading of the provider is deferred.
@@ -16,8 +18,6 @@ class L5ServiceProvider extends ServiceProvider
 
     /**
      * Bootstrap the application events.
-     *
-     * @return void
      */
     public function boot()
     {
@@ -25,17 +25,17 @@ class L5ServiceProvider extends ServiceProvider
 
         // config
         $this->publishes([
-            $packageRoot . '/config/filesystem.php' => config_path('laravel-stapler/filesystem.php'),
-            $packageRoot . '/config/s3.php' => config_path('laravel-stapler/s3.php'),
-            $packageRoot . '/config/stapler.php' => config_path('laravel-stapler/stapler.php')
+            $packageRoot.'/config/filesystem.php' => config_path('laravel-stapler/filesystem.php'),
+            $packageRoot.'/config/s3.php' => config_path('laravel-stapler/s3.php'),
+            $packageRoot.'/config/stapler.php' => config_path('laravel-stapler/stapler.php'),
         ]);
 
-        $this->mergeConfigFrom($packageRoot . '/config/filesystem.php', 'laravel-stapler.filesystem');
-        $this->mergeConfigFrom($packageRoot . '/config/s3.php', 'laravel-stapler.s3');
-        $this->mergeConfigFrom($packageRoot . '/config/stapler.php', 'laravel-stapler.stapler');
+        $this->mergeConfigFrom($packageRoot.'/config/filesystem.php', 'laravel-stapler.filesystem');
+        $this->mergeConfigFrom($packageRoot.'/config/s3.php', 'laravel-stapler.s3');
+        $this->mergeConfigFrom($packageRoot.'/config/stapler.php', 'laravel-stapler.stapler');
 
         // views
-        $this->loadViewsFrom($packageRoot . '/views', 'laravel-stapler');
+        $this->loadViewsFrom($packageRoot.'/views', 'laravel-stapler');
 
         $this->bootstrapStapler();
     }
@@ -46,8 +46,6 @@ class L5ServiceProvider extends ServiceProvider
      * - Set the config driver.
      * - Set public_path config using laravel's public_path() method (if necessary).
      * - Set base_path config using laravel's base_path() method (if necessary).
-     * 
-     * @return void
      */
     protected function bootstrapStapler()
     {
@@ -67,14 +65,11 @@ class L5ServiceProvider extends ServiceProvider
 
     /**
      * Register the stapler fasten command with the container.
-     *
-     * @return void
      */
     protected function registerStaplerFastenCommand()
     {
-        $this->app->bind('stapler.fasten', function($app)
-        {
-            $migrationsFolderPath = base_path() . '/database/migrations';
+        $this->app->bind('stapler.fasten', function ($app) {
+            $migrationsFolderPath = base_path().'/database/migrations';
 
             return new FastenCommand($app['view'], $app['files'], $migrationsFolderPath);
         });

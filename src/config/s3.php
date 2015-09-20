@@ -16,9 +16,9 @@ return [
         'key' => '',
         'secret' => '',
         'region' => '',
-        'scheme' => 'http'
+        'scheme' => 'http',
     ],
-    
+
     /*
     |--------------------------------------------------------------------------
     | S3 Object Config
@@ -32,7 +32,7 @@ return [
     */
     's3_object_config' => [
         'Bucket' => '',
-        'ACL' => 'public-read'
+        'ACL' => 'public-read',
     ],
 
     /*

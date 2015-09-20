@@ -1,4 +1,6 @@
-<?php namespace Codesleeve\LaravelStapler;
+<?php
+
+namespace Codesleeve\LaravelStapler;
 
 use Codesleeve\Stapler\Config\ConfigurableInterface;
 use Illuminate\Config\Repository;
@@ -30,10 +32,10 @@ class IlluminateConfig implements ConfigurableInterface
      * Constructor method.
      *
      * @param Repository $config
-     * @param string $packageName
-     * @param string $separator
+     * @param string     $packageName
+     * @param string     $separator
      */
-    function __construct(Repository $config, $packageName = null, $separator = '::')
+    public function __construct(Repository $config, $packageName = null, $separator = '::')
     {
         $this->config = $config;
         $this->packageName = $packageName;
@@ -44,9 +46,10 @@ class IlluminateConfig implements ConfigurableInterface
      * Retrieve a configuration value.
      *
      * @param $name
+     *
      * @return mixed
      */
-    public function get($name) 
+    public function get($name)
     {
         $item = $this->getItemPath($name);
 
@@ -58,9 +61,10 @@ class IlluminateConfig implements ConfigurableInterface
      *
      * @param $name
      * @param $value
+     *
      * @return mixed
      */
-    public function set($name, $value) 
+    public function set($name, $value)
     {
         $item = $this->getItemPath($name);
 
@@ -72,11 +76,12 @@ class IlluminateConfig implements ConfigurableInterface
      * We need to append the package name to the item separated
      * with '::' for L4 and '.' for L5.
      * 
-     * @param  string $item
+     * @param string $item
+     *
      * @return string
      */
     protected function getItemPath($item)
     {
-        return $this->packageName . $this->separator . $item;
+        return $this->packageName.$this->separator.$item;
     }
 }

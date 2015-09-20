@@ -1,10 +1,11 @@
-<?php namespace Codesleeve\LaravelStapler\Commands;
+<?php
+
+namespace Codesleeve\LaravelStapler\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
 use Illuminate\View\Factory as View;
 use Illuminate\Filesystem\Filesystem as File;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
 
 class FastenCommand extends Command
@@ -62,8 +63,6 @@ class FastenCommand extends Command
 
     /**
      * Execute the console command.
-     *
-     * @return void
      */
     public function fire()
     {
@@ -95,16 +94,14 @@ class FastenCommand extends Command
 
     /**
      * Create a new migration.
-     *
-     * @return void
      */
     protected function createMigration()
     {
         $data = ['table' => $this->argument('table'), 'attachment' => $this->argument('attachment')];
         $prefix = date('Y_m_d_His');
 
-        $fileName  = $this->migrationsFolderPath . '/' . $prefix . '_add_' . $data['attachment'] . '_fields_to_' . $data['table'] . '_table.php';
-        $data['className'] = 'Add' . ucfirst(Str::camel($data['attachment'])) . 'FieldsTo' . ucfirst(Str::camel($data['table'])) . 'Table';
+        $fileName = $this->migrationsFolderPath.'/'.$prefix.'_add_'.$data['attachment'].'_fields_to_'.$data['table'].'_table.php';
+        $data['className'] = 'Add'.ucfirst(Str::camel($data['attachment'])).'FieldsTo'.ucfirst(Str::camel($data['table'])).'Table';
 
         // Save the new migration to disk using the stapler migration view.
         $migration = $this->view->make('laravel-stapler::migration', $data)->render();

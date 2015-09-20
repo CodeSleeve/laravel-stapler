@@ -1,7 +1,9 @@
-<?php namespace Codesleeve\LaravelStapler\Exceptions;
+<?php
+
+namespace Codesleeve\LaravelStapler\Exceptions;
 
 use Exception;
 
-class InvalidClassException extends Exception {
-
+class InvalidClassException extends Exception
+{
 }

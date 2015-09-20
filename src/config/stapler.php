@@ -48,7 +48,6 @@ return [
 
     'image_processing_library' => 'Imagine\Gd\Imagine',
 
-
     /*
     |--------------------------------------------------------------------------
     | Stapler Default Url
@@ -124,6 +123,6 @@ return [
     | records have been removed.
     |
     */
-    'preserve_files' => false
+    'preserve_files' => false,
 
 ];
