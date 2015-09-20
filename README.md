@@ -16,6 +16,7 @@ Laravel-Stapler was created by [Travis Bennett](https://twitter.com/tandrewbenne
 * [Commands](#commands)
   * [Fasten](#fasten)
   * [Refresh](#refresh)
+* [Troubleshooting](#troubleshooting)
 * [Contributing](#contributing)
 
 ## Requirements
@@ -163,6 +164,10 @@ Reprocess only the photo attachment on the ProfilePicture model:
 
 Reprocess a list of attachments on the ProfilePicture model:
 `php artisan stapler:refresh TestPhoto --attachments="foo, bar, baz, etc"`
+
+## Troubleshooting
+Before you submit an issue or create a pull request, please take a look at the [Troubleshooting Section](https://github.com/CodeSleeve/stapler/blob/master/docs/troubleshooting.md) section of the Stapler package.
+There's a very good chance that many (if not all) of the issues you're having with this package are related to the base stapler package and have already been addressed there.
 
 ## Contributing
 This package is always open to contributions:
