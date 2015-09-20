@@ -1,4 +1,4 @@
-<?= '<?php'.PHP_EOL ?>
+<?= '<?php' . PHP_EOL ?>
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -11,13 +11,13 @@ class <?= $className ?> extends Migration {
      * @return void
      */
     public function up()
-    {   
-        Schema::table('<?= $table ?>', function(Blueprint $table) {     
-            
-            $table->string('<?php echo $attachment ?>_file_name')->nullable();
-            $table->integer('<?php echo $attachment ?>_file_size')->nullable();
-            $table->string('<?php echo $attachment ?>_content_type')->nullable();
-            $table->timestamp('<?php echo $attachment ?>_updated_at')->nullable();
+    {
+        Schema::table('<?= $table ?>', function(Blueprint $table) {
+
+            $table->string('<?php echo $attachment ?>_file_name')->nullable()<?php echo (isset($after) ? "->after('" . $after . "')" : '') ?>;
+            $table->integer('<?php echo $attachment ?>_file_size')->nullable()->after('<?php echo $attachment ?>_file_name');
+            $table->string('<?php echo $attachment ?>_content_type')->nullable()->after('<?php echo $attachment ?>_file_size');
+            $table->timestamp('<?php echo $attachment ?>_updated_at')->nullable()->after('<?php echo $attachment ?>_content_type');
 
         });
 

@@ -79,6 +79,7 @@ class FastenCommand extends Command
         return [
             ['table', InputArgument::REQUIRED, 'The name of the database table the file fields will be added to.'],
             ['attachment', InputArgument::REQUIRED, 'The name of the corresponding stapler attachment.'],
+            ['after', InputArgument::OPTIONAL, 'Name of a database field after which the file fields will get added.'],
         ];
     }
 
@@ -97,7 +98,7 @@ class FastenCommand extends Command
      */
     protected function createMigration()
     {
-        $data = ['table' => $this->argument('table'), 'attachment' => $this->argument('attachment')];
+        $data = ['table' => $this->argument('table'), 'attachment' => $this->argument('attachment'), 'after' => $this->argument('after')];
         $prefix = date('Y_m_d_His');
 
         $fileName = $this->migrationsFolderPath.'/'.$prefix.'_add_'.$data['attachment'].'_fields_to_'.$data['table'].'_table.php';
