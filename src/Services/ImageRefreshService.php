@@ -13,14 +13,14 @@ class ImageRefreshService
 {
     /**
      * The laravel application instance.
-     * 
+     *
      * @var Application
      */
     protected $app;
 
     /**
      * A Symfony console output instance.
-     * 
+     *
      * @var OutputInterface
      */
     protected $output;
@@ -47,7 +47,7 @@ class ImageRefreshService
      * @throws InvalidClassException
      *
      * @param string $class
-     * @param array  $attachments
+     * @param string $attachments
      */
     public function refresh($class, $attachments)
     {
@@ -60,11 +60,9 @@ class ImageRefreshService
         if ($attachments) {
             $attachments = explode(',', str_replace(', ', ',', $attachments));
             $this->processSomeAttachments($models, $attachments);
-
-            return;
+        } else {
+            $this->processAllAttachments($models);
         }
-
-        $this->processAllAttachments($models);
     }
 
     /**
