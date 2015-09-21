@@ -62,7 +62,7 @@ If you've been using Stapler (prior to v1.0.0-Beta4) in your Laravel app, you no
 
 * In your s3 configuration, instead of passing 'key', 'secret', 'region', and 'scheme' options, you'll now need to pass a single 's3_client_config' array containing these options (and any others you might want).  These will be passed directly to the s3ClientFactory when creating an S3 client.  Passing the params as an array now allows you to configure your s3 client (for a given model/attachment) however you like.  See:  http://docs.aws.amazon.com/aws-sdk-php/guide/latest/configuration.html#client-configuration-options
 
-* In your s3 configuration, instead of passing 'bucket' and 'ACL', you'll now need to pass a single 's3_object_config' array containing these values (this is used by the S3Client::putObject() method).  See:  http://docs.aws.amazon.com/aws-sdk-php/latest/class-Aws.S3.S3Client.html#_putObject
+* In your s3 configuration, instead of passing 'Bucket' and 'ACL', you'll now need to pass a single 's3_object_config' array containing these values (this is used by the S3Client::putObject() method).  See:  http://docs.aws.amazon.com/aws-sdk-php/latest/class-Aws.S3.S3Client.html#_putObject
 
 * The ':laravel_root' interpolation has been changed to ':app_root'
 
