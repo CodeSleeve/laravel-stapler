@@ -4,7 +4,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Attachment Implementation
+    | Attachment Class Implementation
     |--------------------------------------------------------------------------
     |
     | The concrete implementation for the attachment contract.
@@ -15,10 +15,10 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | The concrete implementation for the interpolator contract.
+    | Interpolator Class Implementation
     |--------------------------------------------------------------------------
     |
-    | The location of the web application's document root.
+    | The concrete implementation for the interpolator contract.
     |
     */
 
@@ -26,10 +26,10 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | The concrete implementation for the resizer contract.
+    | Resizer Class Implementation
     |--------------------------------------------------------------------------
     |
-    | The location of the web application's document root.
+    | The concrete implementation for the resizer contract.
     |
     */
 
@@ -37,20 +37,20 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | The concrete implementation for the style contract.
+    | Style Class Implementation
     |--------------------------------------------------------------------------
     |
-    | The location of the web application's document root.
+    | The concrete implementation for the style contract.
     |
     */
     'style' => '\Codesleeve\Stapler\Style',
 
     /*
     |--------------------------------------------------------------------------
-    | The concrete implementation for the validator contract.
+    | Validator Class Implementation
     |--------------------------------------------------------------------------
     |
-    | The location of the web application's document root.
+    | The concrete implementation for the validator contract.
     |
     */
     'validator' => '\Codesleeve\Stapler\Validator',
