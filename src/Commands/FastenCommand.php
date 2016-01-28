@@ -4,7 +4,7 @@ namespace Codesleeve\LaravelStapler\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
-use Illuminate\View\Factory as View;
+use Illuminate\Contracts\View\Factory as View;
 use Illuminate\Filesystem\Filesystem as File;
 use Symfony\Component\Console\Input\InputArgument;
 
