@@ -26,13 +26,15 @@ class L5ServiceProvider extends ServiceProvider
         // config
         $this->publishes([
             $packageRoot.'/config/filesystem.php' => config_path('laravel-stapler/filesystem.php'),
-            $packageRoot.'/config/s3.php' => config_path('laravel-stapler/s3.php'),
-            $packageRoot.'/config/stapler.php' => config_path('laravel-stapler/stapler.php'),
-            $packageRoot.'/config/bindings.php' => config_path('laravel-stapler/bindings.php'),
+            $packageRoot.'/config/s3.php'         => config_path('laravel-stapler/s3.php'),
+            $packageRoot.'/config/rackspace.php'  => config_path('laravel-stapler/rackspace.php'),
+            $packageRoot.'/config/stapler.php'    => config_path('laravel-stapler/stapler.php'),
+            $packageRoot.'/config/bindings.php'   => config_path('laravel-stapler/bindings.php'),
         ]);
 
         $this->mergeConfigFrom($packageRoot.'/config/filesystem.php', 'laravel-stapler.filesystem');
         $this->mergeConfigFrom($packageRoot.'/config/s3.php', 'laravel-stapler.s3');
+        $this->mergeConfigFrom($packageRoot.'/config/rackspace.php', 'laravel-stapler.rackspace');
         $this->mergeConfigFrom($packageRoot.'/config/stapler.php', 'laravel-stapler.stapler');
         $this->mergeConfigFrom($packageRoot.'/config/bindings.php', 'laravel-stapler.bindings');
 
