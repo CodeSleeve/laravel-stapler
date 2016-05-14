@@ -3,8 +3,7 @@
 namespace Codesleeve\LaravelStapler\Commands;
 
 use Illuminate\Console\Command;
-use Symfony\Component\Console\Input\InputOption;
-use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\{InputOption, InputArgument};
 use Codesleeve\LaravelStapler\Services\ImageRefreshService;
 
 class RefreshCommand extends Command
@@ -21,7 +20,7 @@ class RefreshCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Regenerate images for a given model (and optional attachment and styles)';
+    protected $description = 'Regenerate images for a given Eloquent model (and optional attachment and styles)';
 
     /**
      * The image refresh service that will be used to

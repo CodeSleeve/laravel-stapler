@@ -16,7 +16,7 @@ class IlluminateConfig implements Config
 
     /**
      * The name of the package this driver is being used with.
-     * 
+     *
      * @var string
      */
     protected $packageName;
@@ -45,11 +45,11 @@ class IlluminateConfig implements Config
     /**
      * Retrieve a configuration value.
      *
-     * @param $name
+     * @param string $name
      *
      * @return mixed
      */
-    public function get($name)
+    public function get(string $name)
     {
         $item = $this->getItemPath($name);
 
@@ -59,12 +59,12 @@ class IlluminateConfig implements Config
     /**
      * Set a configuration value.
      *
-     * @param $name
-     * @param $value
+     * @param string $name
+     * @param mixed  $value
      *
      * @return mixed
      */
-    public function set($name, $value)
+    public function set(string $name, $value)
     {
         $item = $this->getItemPath($name);
 
@@ -75,12 +75,12 @@ class IlluminateConfig implements Config
      * Return the path to an item so that it can be loaded via config.
      * We need to append the package name to the item separated
      * with '::' for L4 and '.' for L5.
-     * 
+     *
      * @param string $item
      *
      * @return string
      */
-    protected function getItemPath($item)
+    protected function getItemPath(string $item) : string
     {
         return $this->packageName.$this->separator.$item;
     }
