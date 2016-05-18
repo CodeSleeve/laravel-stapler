@@ -8,15 +8,18 @@ return [
     |--------------------------------------------------------------------------
     |
     | This is array holds the default configuration options used when creating
-    | an instance of Aws\S3\S3Client.  These options will be passed directly to 
+    | an instance of Aws\S3\S3Client.  These options will be passed directly to
     | the s3ClientFactory when creating an S3 client instance.
     |
     */
     's3_client_config' => [
-        'key' => '',
-        'secret' => '',
+        'credentials' => [
+            'key' => '',
+            'secret' => ''
+        ],
         'region' => '',
         'scheme' => 'http',
+        'version' => 'latest'
     ],
 
     /*
@@ -26,7 +29,7 @@ return [
     |
     | An array of options used by the Aws\S3\S3Client::putObject() method when
     | storing a file on S3.
-    | AWS Documentation for Aws\S3\S3Client::putObject() at 
+    | AWS Documentation for Aws\S3\S3Client::putObject() at
     | http://docs.aws.amazon.com/aws-sdk-php/latest/class-Aws.S3.S3Client.html#_putObject
     |
     */
