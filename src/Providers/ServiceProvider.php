@@ -55,7 +55,7 @@ abstract class ServiceProvider extends BaseServiceProvider
      */
     protected function registerImageRefreshService()
     {
-        $this->app->singleton('ImageRefreshService', function ($app, $params) {
+        $this->app->singleton('ImageRefreshService', function ($app) {
             return new ImageRefreshService($app);
         });
     }
